@@ -6,7 +6,15 @@ import com.filipense.filipense.repository.PersonRepository;
 import com.filipense.filipense.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.time.Instant;
+import java.time.ZonedDateTime;
+import java.time.ZoneId;
 
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -81,8 +89,36 @@ public class StudentServiceImplementation implements StudentService{
     }
 
     @Override
-    public List<StudentPerson> listStudents(int student_id) {
-        return null;
+    public StudentPerson getStudentPerson(int student_id) {
+        Object[][] student = studentRepository.getStudentPerson(student_id);
+        StudentPerson studentPerson = studentPerson = new StudentPerson();;
+
+        if (student.length > 0){
+            studentPerson.setStudent_id(Integer.parseInt(student[0][0].toString()));
+            studentPerson.setIdentification_type_Id((Integer) student[0][1]);
+            studentPerson.setIdentification_number((String) student[0][2]);
+            studentPerson.setFirst_name((String) student[0][3]);
+            studentPerson.setMiddle_name((String) student[0][4]);
+            studentPerson.setLast_name((String) student[0][5]);
+            studentPerson.setSecond_last_name((String) student[0][6]);
+            studentPerson.setPerson_type_id((Integer) student[0][7]);
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            studentPerson.setDate_of_birth(LocalDate.parse(student[0][8].toString().substring(0,10), formatter));
+            studentPerson.setEmail((String) student[0][9]);
+            studentPerson.setCreation_date(LocalDate.parse(student[0][10].toString().substring(0,10), formatter).atStartOfDay());
+            studentPerson.setCreation_user_id((Integer) student[0][11]);
+            studentPerson.setModification_date(student[0][12] != null ? LocalDate.parse(student[0][12].toString().substring(0,10), formatter).atStartOfDay() : null);
+            studentPerson.setModification_user_id((Integer) student[0][13]);
+            studentPerson.setStatus(student[0][14].toString() == "1" ? true : false);
+            studentPerson.setStudent_id((Integer) student[0][15]);
+            studentPerson.setSchoolyear_grade_id((Integer) student[0][17]);
+            studentPerson.setStudent_code((String) student[0][18]);
+            studentPerson.setUser_id((Integer) student[0][19]);
+            studentPerson.setDependency_id((Integer) student[0][20]);
+        }
+
+        return studentPerson;
     }
 
     @Override

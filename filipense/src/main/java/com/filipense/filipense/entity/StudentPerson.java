@@ -17,9 +17,13 @@ public class StudentPerson {
     private LocalDateTime creation_date = LocalDateTime.now();
     private int creation_user_id;
     private LocalDateTime modification_date = null;
+    private Integer modification_user_id = null;
+    private boolean status;
     private int student_id;
     private int schoolyear_grade_id;
     private String student_code;
+    private int user_id;
+    private int dependency_id;
     public StudentPerson() {
     }
 
@@ -149,5 +153,37 @@ public class StudentPerson {
 
     public void setStudent_code(String student_code) {
         this.student_code = student_code;
+    }
+
+    public Integer getModification_user_id() {
+        return modification_user_id;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public void setModification_user_id(Integer modification_user_id) {
+        this.modification_user_id = modification_user_id;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public int getDependency_id() {
+        return dependency_id;
+    }
+
+    public void setDependency_id(int dependency_id) {
+        this.dependency_id = dependency_id;
     }
 }

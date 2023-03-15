@@ -1,7 +1,7 @@
 package com.filipense.filipense.repository;
 
-import com.filipense.filipense.entity.Observation;
 import com.filipense.filipense.entity.Student;
+import com.filipense.filipense.entity.StudentPerson;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,5 +21,5 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
                     "INNER JOIN student\n" +
                     "ON student.person_id = person.person_id\n" +
                     "WHERE student.student_id = :studentid", nativeQuery = true)
-    public Student getStudentPerson(@Param("studentid") int student_id);
+    public Object[][] getStudentPerson(@Param("studentid") int student_id);
 }
