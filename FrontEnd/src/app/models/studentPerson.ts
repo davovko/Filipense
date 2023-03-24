@@ -11,7 +11,7 @@ export interface StudentPerson{
     email: string;
     creation_date: Date; 
     creation_user_id: number;
-    modification_date?: Date;;
+    modification_date?: Date;
     modification_user_id?: number;
     status: boolean;
     student_id: number;
