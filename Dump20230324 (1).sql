@@ -191,22 +191,6 @@ CREATE TABLE `grade` (
   `grade_id` int NOT NULL AUTO_INCREMENT,
   `description` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   `abbreviation` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `observation_id` int NOT NULL,
-  `creation_date` datetime(6) DEFAULT NULL,
-  `creation_user_id` int NOT NULL,
-  `dependency_id` int NOT NULL,
-  `employee_id` int DEFAULT NULL,
-  `evidence` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
-  `identification_number_visitor` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
-  `identificationtype_id` int DEFAULT NULL,
-  `modification_date` datetime(6) DEFAULT NULL,
-  `modification_user_id` int DEFAULT NULL,
-  `observation` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
-  `reason_id` int NOT NULL,
-  `recomendation` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
-  `relationship_id` int DEFAULT NULL,
-  `student_id` int DEFAULT NULL,
-  `visitor_name` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`grade_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -217,7 +201,7 @@ CREATE TABLE `grade` (
 
 LOCK TABLES `grade` WRITE;
 /*!40000 ALTER TABLE `grade` DISABLE KEYS */;
-INSERT INTO `grade` VALUES (1,'PREJARDIN','PRE JR',0,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),(2,'JARDIN','JR',0,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),(3,'TRANSICIÓN','TR',0,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),(4,'PRIMERO','1',0,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),(5,'SEGUNDO','2',0,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),(6,'TERCERO','3',0,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),(7,'CUARTO','4',0,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),(8,'QUINTO','5',0,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),(9,'SEXTO','6',0,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),(10,'SEPTIMO','7',0,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),(11,'OCTAVO','8',0,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),(12,'NOVENO','9',0,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),(13,'DECIMO','10',0,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),(14,'UNDECIMO','11',0,NULL,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
+INSERT INTO `grade` VALUES (1,'PREJARDIN','PRE JR'),(2,'JARDIN','JR'),(3,'TRANSICIÓN','TR'),(4,'PRIMERO','1'),(5,'SEGUNDO','2'),(6,'TERCERO','3'),(7,'CUARTO','4'),(8,'QUINTO','5'),(9,'SEXTO','6'),(10,'SEPTIMO','7'),(11,'OCTAVO','8'),(12,'NOVENO','9'),(13,'DECIMO','10'),(14,'UNDECIMO','11');
 /*!40000 ALTER TABLE `grade` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -375,6 +359,7 @@ CREATE TABLE `reason` (
   `reason_id` int NOT NULL AUTO_INCREMENT,
   `dependency_id` int NOT NULL,
   `description` varchar(45) COLLATE utf8mb3_spanish_ci NOT NULL,
+  `student_employee` tinyint NOT NULL,
   PRIMARY KEY (`reason_id`),
   KEY `FK_reason_dependence_id_idx` (`dependency_id`),
   CONSTRAINT `FK_reason_dependency_id` FOREIGN KEY (`dependency_id`) REFERENCES `dependency` (`dependency_id`)
@@ -387,7 +372,7 @@ CREATE TABLE `reason` (
 
 LOCK TABLES `reason` WRITE;
 /*!40000 ALTER TABLE `reason` DISABLE KEYS */;
-INSERT INTO `reason` VALUES (1,4,'RAZON1'),(2,4,'RAZON2'),(3,4,'RAZON3');
+INSERT INTO `reason` VALUES (1,4,'RAZON1',1),(2,4,'RAZON2',1),(3,4,'RAZON3',1);
 /*!40000 ALTER TABLE `reason` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -565,4 +550,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-24  7:30:34
+-- Dump completed on 2023-03-24 13:40:52
